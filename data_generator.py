@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 from faker import Faker
+import random
+import time
 
 class RandomDataGenerator:
     def __init__(self):
@@ -16,14 +18,21 @@ class RandomDataGenerator:
         Sets up the class as an iterator class, returning itself
         :return:
         """
-        pass
+        for _ in range(20):
+            self._gen_random()
+        return self
 
     def __next__(self):
         """
         Defines the logic to create new random data of corresponding type
         :return:
         """
-        pass
+        if len(self.generated_data) < 5:
+            for _ in range(20):
+                self._gen_random()
+                random.shuffle(self.generated_data)
+
+        return self.generated_data.pop()
 
     def _gen_random(self):
         """
