@@ -43,10 +43,10 @@ class RandomDataGenerator:
         - bank_data :passport, IBAN, Salary
         - net data: address, IPv4
         """
-        fullname = self.fake.name()
-        name = fullname.split()[0]
-        lastname = fullname.split()[1]
-        sex = self.fake.random_choices(elements=("M", "F", "ND"))
+        fullname = self.fake.name() if random.randint(1,500) != 1 else "ERROR_code23a34j!#"
+        name = fullname.split()[0] if not fullname.startswith("ERROR") else ""
+        lastname = fullname.split()[1] if not fullname.startswith("ERROR") else ""
+        sex = self.fake.random_choices(elements=("M", "F", "ND"), length=1) if random.randint(1,50) != 1 else None
         telfnumber = self.fake.phone_number()
         passport = self.fake.passport_number()
         email = self.fake.ascii_free_email()
